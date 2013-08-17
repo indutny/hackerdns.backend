@@ -1,0 +1,23 @@
+{
+  "name": "hackerdns.backend",
+  "bin": {
+    "hackerdns.backend": "app.js"
+  },
+  "private": true,
+  "version": "0.0.0",
+  "description": "Hackerdns.com backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fedor Indutny <fedor@indutny.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nconf": "~0.6.7",
+    "dnsd": "~0.9.0",
+    "redis": "~0.8.4",
+    "express": "~3.3.5",
+    "spdy": "~1.10.5",
+    "dtrace-provider": "~0.2.8"
+  }
+}
