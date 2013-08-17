@@ -18,6 +18,7 @@
     "redis": "~0.8.4",
     "express": "~3.3.5",
     "spdy": "~1.10.5",
-    "dtrace-provider": "~0.2.8"
+    "dtrace-provider": "~0.2.8",
+    "cors": "~1.0.1"
   }
 }
