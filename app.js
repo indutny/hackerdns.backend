@@ -1,4 +1,5 @@
 var nconf = require('nconf');
+var cluster = require('cluster');
 
 nconf.argv()
      .env()
@@ -23,24 +24,39 @@ nconf.set('api:token:length', 20);
 nconf.set('api:token:ttl', 3600);
 nconf.set('api:port', 44300);
 nconf.set('api:hostname', '0.0.0.0');
+nconf.set('api:workers', 1);
 nconf.set('dns:port', 5959);
 nconf.set('dns:hostname', '127.0.0.1');
 
 var api = require('./lib/api');
 var dns = require('./lib/dns');
 
-if (!process.argv[2] || process.argv[2] === 'api') {
-  api.createServer(nconf).start(function() {
-    console.log('API Server is up and running at %s:%d',
-                nconf.get('api:hostname'),
-                nconf.get('api:port'));
-  });
-}
+var app = process.argv[process.argv.length - 1];
+if (app !== 'dns' && app !== 'api')
+  app = null;
 
-if (!process.argv[2] || process.argv[2] === 'dns') {
+if (cluster.isMaster && (!app || app === 'dns')) {
   dns.createServer(nconf).start(function() {
     console.log('DNS Server is up and running at %s:%d',
                 nconf.get('dns:hostname'),
                 nconf.get('dns:port'));
+  });
+}
+
+if (!app|| app === 'api') {
+  if (cluster.isMaster && nconf.get('api:workers') != 1) {
+    function fork() {
+      cluster.fork().once('exit', fork);
+    }
+
+    for (var i = 0; i < nconf.get('api:workers'); i++) {
+      cluster.fork();
+    }
+    return;
+  }
+  api.createServer(nconf).start(function() {
+    console.log('API Server is up and running at %s:%d',
+                nconf.get('api:hostname'),
+                nconf.get('api:port'));
   });
 }
