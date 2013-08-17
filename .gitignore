@@ -1,3 +1,4 @@
 node_modules/
+/private-keys
 /config.json
 /npm-debug.log
