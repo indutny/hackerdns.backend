@@ -15,11 +15,12 @@
   "dependencies": {
     "nconf": "~0.6.7",
     "dnsd": "~0.9.0",
-    "redis": "~0.8.4",
     "express": "~3.3.5",
     "spdy": "~1.10.5",
     "dtrace-provider": "~0.2.8",
     "cors": "~1.0.1",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "resourceful": "~0.3.3",
+    "redis": "~0.8.4"
   }
 }

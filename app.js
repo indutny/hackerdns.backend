@@ -1,4 +1,5 @@
 var cluster = require('cluster');
+var resourceful = require('resourceful');
 
 var nconf = require('nconf')
    .argv()
@@ -12,13 +13,19 @@ var nconf = require('nconf')
      },
      db: {
        hostname: '127.0.0.1',
+       port: 5984,
+       database: 'hackerdns',
+       auth: {
+         username: 'admin',
+         password: 'admin'
+       }
+     },
+     redis: {
+       hostname: '127.0.0.1',
        port: 6379,
-       prefix: {
-         probe: 'p',
-         domain: 'd',
-         session: 's',
+       prefixes: {
          token: 't',
-         user: 'u'
+         probe: 'p'
        }
      },
      api: {
@@ -45,6 +52,11 @@ var nconf = require('nconf')
      }
    });
 
+// Initialize resourceful and models
+resourceful.use('couchdb', nconf.get('db'));
+var common = require('./lib/common');
+
+// Start apps
 var api = require('./lib/api');
 var dns = require('./lib/dns');
 
