@@ -48,7 +48,13 @@ var nconf = require('nconf')
      },
      dns: {
        port: 5959,
-       hostname: '127.0.0.1'
+       hostname: '127.0.0.1',
+       mname: 'ns1.hackerdns.com',
+       rname: 'indutny.com',
+       refresh: 3600,
+       retry: 900,
+       expire: 1209600,
+       ttl: 900
      }
    });
 
