@@ -1,0 +1,27 @@
+{
+  "db": {
+    "host": "1.2.3.4",
+    "port": 5984,
+    "database": "hackerdns-prod",
+    "auth": {
+      "username": "admin",
+      "password": "admin"
+    }
+  },
+  "redis": {
+    "host": "1.2.3.4"
+  },
+  "api": {
+    "ssl": {
+      "cert": "/home/fedor/keys/server.cert",
+      "key": "/home/fedor/keys/server.key"
+    },
+    "hostname": "1.2.3.4",
+    "port": 443,
+    "workers": 4
+  },
+  "dns": {
+    "hostname": "1.2.3.4",
+    "port": 53
+  }
+}
