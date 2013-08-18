@@ -10,9 +10,11 @@ bockend for it, consisting of both DNS and API servers.
    according to your setup.
 3. Start HackerDNS backend with one of following commands:
 
-    node app.js  # to run both dns and api server
-    node app.js api  # to run only api server
-    node app.js dns  # to run only dns server
+```
+node app.js  # to run both dns and api server
+node app.js api  # to run only api server
+node app.js dns  # to run only dns server
+```
 
 4. Install and run [frontend][0]
 5. Use it!
