@@ -12,7 +12,7 @@ var nconf = require('nconf')
        interval: 60000
      },
      db: {
-       hostname: '127.0.0.1',
+       host: '127.0.0.1',
        port: 5984,
        database: 'hackerdns',
        auth: {
@@ -21,7 +21,7 @@ var nconf = require('nconf')
        }
      },
      redis: {
-       hostname: '127.0.0.1',
+       host: '127.0.0.1',
        port: 6379,
        prefixes: {
          token: 't',
