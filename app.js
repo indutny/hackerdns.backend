@@ -54,7 +54,7 @@ var nconf = require('nconf')
        refresh: 3600,
        retry: 900,
        expire: 1209600,
-       ttl: 900
+       ttl: 3600
      }
    });
 
