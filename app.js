@@ -2,61 +2,69 @@ var cluster = require('cluster');
 var resourceful = require('resourceful');
 
 var nconf = require('nconf')
-   .argv()
-   .env()
-   .file({ file: 'config.json' })
-   .defaults({
-     server: 'dns1',
-     probe: {
-       names: 'request',
-       interval: 60000
-     },
-     db: {
-       host: '127.0.0.1',
-       port: 5984,
-       database: 'hackerdns',
-       auth: {
-         username: 'admin',
-         password: 'admin'
-       }
-     },
-     redis: {
-       host: '127.0.0.1',
-       port: 6379,
-       prefixes: {
-         token: 't',
-         probe: 'p'
-       }
-     },
-     api: {
-       ssl: {
-         cert: __dirname + '/keys/cert.pem',
-         key: __dirname + '/keys/key.pem'
-       },
-       pbkdf2: {
-         saltlen: 16,
-         iterations: 100,
-         length: 20
-       },
-       token: {
-         length: 20,
-         ttl: 3600
-       },
-       port: 44300,
-       hostname: '127.0.0.1',
-       workers: 1
-     },
-     dns: {
-       port: 5959,
-       hostname: '127.0.0.1',
-       mname: 'ns1.hackerdns.com',
-       rname: 'indutny.com',
-       refresh: 3600,
-       retry: 900,
-       expire: 1209600,
-       ttl: 3600
-     }
-   });
+    .argv()
+    .env()
+    .file({ file: 'config.json' })
+    .defaults({
+      server: 'dns1',
+      probe: {
+        names: 'request',
+        interval: 60000
+      },
+      db: {
+        host: '127.0.0.1',
+        port: 5984,
+        database: 'hackerdns',
+        auth: {
+          username: 'admin',
+          password: 'admin'
+        }
+      },
+      redis: {
+        host: '127.0.0.1',
+        port: 6379,
+        prefixes: {
+          token: 't',
+          probe: 'p'
+        }
+      },
+      api: {
+        ssl: {
+          cert: __dirname + '/keys/cert.pem',
+          key: __dirname + '/keys/key.pem'
+        },
+        pbkdf2: {
+          saltlen: 16,
+          iterations: 100,
+          length: 20
+        },
+        token: {
+          length: 20,
+          ttl: 3600
+        },
+        port: 44300,
+        hostname: '127.0.0.1',
+        workers: 1
+      },
+      dns: {
+        port: 5959,
+        hostname: '127.0.0.1',
+        mname: 'ns1.hackerdns.com',
+        rname: 'indutny.com',
+        refresh: 3600,
+        retry: 900,
+        expire: 1209600,
+        ttl: 3600,
+        ns: [
+          'ns1.hackerdns.com',
+          'ns2.hackerdns.com',
+          'ns3.hackerdns.com',
+          'ns4.hackerdns.com',
+          'ns5.hackerdns.com',
+          'ns6.hackerdns.com'
+        ]
+      }
+    });
 
 // Initialize resourceful and models
 resourceful.use('couchdb', nconf.get('db'));
