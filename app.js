@@ -56,12 +56,12 @@ var nconf = require('nconf')
         expire: 1209600,
         ttl: 3600,
         ns: [
-          'ns1.hackerdns.com',
-          'ns2.hackerdns.com',
-          'ns3.hackerdns.com',
-          'ns4.hackerdns.com',
-          'ns5.hackerdns.com',
-          'ns6.hackerdns.com'
+          { host: 'ns1.hackerdns.com', ip: '1.1.1.1' },
+          { host: 'ns2.hackerdns.com', ip: '1.1.1.1' },
+          { host: 'ns3.hackerdns.com', ip: '1.1.1.1' },
+          { host: 'ns4.hackerdns.com', ip: '1.1.1.1' },
+          { host: 'ns5.hackerdns.com', ip: '1.1.1.1' },
+          { host: 'ns6.hackerdns.com', ip: '1.1.1.1' }
         ]
       }
     });
